@@ -1,0 +1,56 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "enemy01",
+  "_objFlags": 0,
+  "_rawFiles": null,
+  "_duration": 1.0333333333333334,
+  "sample": 60,
+  "speed": 0.3,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "position": [
+        {
+          "frame": 0,
+          "value": [
+            -386,
+            204
+          ],
+          "curve": "linear"
+        },
+        {
+          "frame": 0.25,
+          "value": [
+            -27,
+            326
+          ]
+        },
+        {
+          "frame": 0.48333333333333334,
+          "value": [
+            184,
+            211
+          ]
+        },
+        {
+          "frame": 0.75,
+          "value": [
+            39,
+            -59
+          ]
+        },
+        {
+          "frame": 1.0333333333333334,
+          "value": [
+            -316,
+            -201
+          ]
+        }
+      ]
+    },
+    "comps": {
+      "cc.Sprite": {}
+    }
+  },
+  "events": []
+}
