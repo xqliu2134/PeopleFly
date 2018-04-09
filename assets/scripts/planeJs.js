@@ -12,7 +12,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        screentWidth: 0,//背景宽度
+        screenWidth: 0,//背景宽度
         screentHeight: 0,//背景高度
         width: 0,//当前精灵宽度
         height: 0,//当前精灵高度
@@ -33,28 +33,31 @@ cc.Class({
         this.width = size.width;
         this.height = size.height;
         console.log("plane width:"+this.width+",height:"+this.height);
-        
     },
 
     update:function(dt){
-        console.log("screen width:"+this.screentWidth+",height:"+this.screentHeight);
-        if(!this.vertifyRect()){
-            return;
-        }
         var p = this.node.getPosition();
         var moveP = cc.p(p.x+this.deltaX,p.y+this.deltaY);
         this.node.setPosition(moveP);
+        this.deltaX = 0;
+        this.deltaY = 0;
+
+        console.log("cccp x:"+this.node.position.x+",y:"+this.node.position.y);
+        var wp = this.node.convertToWorldSpace(this.node.position);
+        console.log("wwwp x:"+wp.x+",y:"+wp.y);
     },
 
     vertifyRect:function(){
         var vp = this.node.getPosition();
+        var wp = this.node.convertToWorldSpaceAR(vp);
         var moveP = cc.p(vp.x+this.deltaX,vp.y+this.deltaY);
-        var rect = new cc.Rect(-this.screentWidth/2,this.screentHeight/2-this.height/2,this.screentWidth/2-this.width/2,-this.screentHeight/2-this.height/2);
+        console.log("p x:"+wp.x+",y:"+wp.y);
+
+        var rect = new cc.Rect(-this.screenWidth/2,-(this.screentHeight/2-this.height/2),this.screenWidth,this.screentHeight);
+        console.log("rect x:"+rect.x+",y:"+rect.y+",w:"+rect.width+",h:"+rect.height);
         if(rect.contains(moveP)){
-            console.log("vertify true");
             return true;
         }
-        console.log("vertify false");
         return false;
     }
 

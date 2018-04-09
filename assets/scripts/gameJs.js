@@ -29,13 +29,27 @@ cc.Class({
     onLoad:function(){
         var newPlane = this.plane;
         var size = this.node.getContentSize();
+        console.log("game size width:"+size.width+",height:"+size.height);
         newPlane.getComponent("planeJs").screenWidth = size.width;
         newPlane.getComponent("planeJs").screentHeight = size.height;
-        
+
+        var clickflag = false;
+        this.mainbg.on(cc.Node.EventType.MOUSE_DOWN,function(event){
+            clickflag = true;
+        });
+
+        this.mainbg.on(cc.Node.EventType.MOUSE_UP,function(event){
+            clickflag = false;
+            newPlane.getComponent("planeJs").deltaX = 0;
+            newPlane.getComponent("planeJs").deltaY = 0;
+        });
+
         this.mainbg.on(cc.Node.EventType.MOUSE_MOVE,function(event){
-            var delta = event.getDelta();
-            newPlane.getComponent("planeJs").deltaX = delta.x;
-            newPlane.getComponent("planeJs").deltaY = delta.y;
+            if(clickflag){
+                var delta = event.getDelta();
+                newPlane.getComponent("planeJs").deltaX = delta.x;
+                newPlane.getComponent("planeJs").deltaY = delta.y;
+            }
         });
         this.createEnemy01();
     },
